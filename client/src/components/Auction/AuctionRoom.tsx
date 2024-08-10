@@ -220,7 +220,7 @@ const AuctionRoom = () => {
               <TabPanel>
                 <div>
                   <h1 className="text-xl font-semibold m-1 mb-3">Live Chat</h1>
-                  <div className="overflow-y-auto h-[320px]">
+                  <div className="overflow-y-scroll overflow-x-hidden h-[320px]">
                     {chat.map((message, index) => (
                       <motion.div
                         key={index}
