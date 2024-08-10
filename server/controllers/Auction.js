@@ -17,18 +17,18 @@ exports.createAuction = async (req, res) => {
     let public_id = "public_id";
     let url = "url";
     let desc = "This is description";
-    // console.log(req.file.path);
-    // await cloudinary.uploader.upload(req.file.path, (err, result) => {
-    //     if (err) {
-    //         console.log("error is " +err);
-    //     }
-    //     console.log(result)
-    //     url = result?.url;
-    //     public_id = result?.public_id;
+    console.log(req.file.path);
+    await cloudinary.uploader.upload(req.file.path, (err, result) => {
+        if (err) {
+            console.log("error is " +err);
+        }
+        console.log(result)
+        url = result?.url;
+        public_id = result?.public_id;
 
-    //     console.log("url : ", url);
-    //     console.log("public_id : ", public_id);
-    // });
+        console.log("url : ", url);
+        console.log("public_id : ", public_id);
+    });
 
     const auction = await Auction.create({
       userId,
