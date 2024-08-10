@@ -29,6 +29,7 @@ import { AddIcon, CopyIcon } from "@chakra-ui/icons";
 const AddButton = ({ user }: any) => {
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
   const {
     isOpen: isOpenAuction,
@@ -58,7 +59,7 @@ const AddButton = ({ user }: any) => {
   };
 
   const createAuction = async (e: any) => {
-
+    setIsLoading(true);
     const cropName = auctionData.cropName;
     const userId = user._id;
     const expireTime = auctionData.auctionTime;
@@ -88,6 +89,8 @@ const AddButton = ({ user }: any) => {
         status: "success",
       });
       onCloseAuction();
+      setIsLoading(false);
+      location.reload();
     } catch (err) {
       toast({
         title: "Create Auction Error",
@@ -96,6 +99,7 @@ const AddButton = ({ user }: any) => {
         position: "top-right",
         status: "error",
       });
+      setIsLoading(false);
     }
   };
 
@@ -206,7 +210,7 @@ const AddButton = ({ user }: any) => {
             </FormControl>
           </ModalBody>
           <ModalFooter className=" bg-gray-800  bg-opacity-100 shadow-lg text-white">
-            <Button colorScheme="teal" m={3} onClick={createAuction}>
+            <Button colorScheme="teal" m={3} onClick={createAuction} isLoading={isLoading}>
               Create Auction
             </Button>
             <Button onClick={onCloseAuction}>Close</Button>

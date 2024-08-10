@@ -72,7 +72,7 @@ export default function Auction({ isLoggedIn, user }: any) {
     <div>
       <h1 className="text-3xl font-bold mb-10">Live Auctions</h1>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-5 lg:gap-0 lg:grid-cols-2">
         {auctions.map((auction: any) => {
           // console.log(auction);
 
@@ -83,7 +83,7 @@ export default function Auction({ isLoggedIn, user }: any) {
             if (!isNaN(expireTime) && Date.now() <= expireTime) {
               return (
                 <Reveal>
-                  <div className="glassy-effect  border-zinc-800 border-2 flex flex-col items-center justify-between p-7 max-w-[600px] rounded-md ">
+                  <div className="glassy-effect m-auto border-zinc-800 border-2 flex flex-col items-center justify-between p-7 max-w-[600px] rounded-md w-[90%] ">
                     <h2 className="text-2xl ">
                       Name :{" "}
                       <span className="font-semibold">{auction.cropName}</span>
