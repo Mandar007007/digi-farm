@@ -117,3 +117,58 @@ exports.checkMail = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.getPendingPayments = async(req,res) => {
+  try{
+    const {bidderEmail} = req.body;
+    const auctions = await Auction.find({bidderEmail})
+
+    res.status(200).json({
+      success: true,
+      auctions
+    })
+
+  }catch(err)
+  {
+    res.status(500).json({
+      success: false,
+      error:err.message
+    })
+  }
+}
+
+exports.verifyPayment = async (req, res) => {
+  const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+    req.body;
+  console.log("verify payments");
+
+  const checkStatus = razorpay_order_id + "|" + razorpay_payment_id;
+
+  const expectedSignature = crypto
+    .createHmac("sha256", process.env.RAZOR_SECRET)
+    .update(checkStatus.toString())
+    .digest("hex");
+
+  const isValidPayment = expectedSignature === razorpay_signature;
+
+  if (isValidPayment)
+  {
+    res.redirect(
+      `http://localhost:5173/`
+    );
+  } else {
+    res.status(400).json({ status: false });
+  }
+};
+
+exports.checkOut = async (req, res) => {
+  const options = {
+    amount: Number(req.body.amount * 100),
+    currency: "INR",
+  };
+
+  const order = await instance.orders.create(options);
+
+  console.log(order);
+  res.status(200).json({ status: true, order });
+};
