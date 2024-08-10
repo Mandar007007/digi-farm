@@ -36,7 +36,7 @@ const AuctionRoom = () => {
   const [emailData, setEmailData] = useState({
     email: bidderEmail,
     subject: "Auction Winner Confirmation",
-    winnerName: auction.currentBidder,
+    winnerName: auction?.currentBidder,
     cropName: "Baajro",
     finalBidAmount: "500",
     auctionDate: "2022-02-15",
@@ -67,9 +67,9 @@ const AuctionRoom = () => {
 
   const sendMessage = async () => {
     try {
-      if(message === "")
-      {
-        toast({title: 'Message Error',
+      if (message === "") {
+        toast({
+          title: 'Message Error',
           description: "Please enter a message",
           status: 'error',
           duration: 3000,
@@ -135,56 +135,58 @@ const AuctionRoom = () => {
   return (
     <div style={{ textAlign: "center", marginTop: "20px" }}>
       <h1 className="text-3xl">Auction Room of {auction?.cropName}</h1>
-      <div className="flex">
-        <div className="glassy-effect p-4 shadow-md rounded-md m-2 w-[500px]">
+      <div className="flex justify-center md:flex-row flex-col max-md:items-center ">
+        <div className="glassy-effect p-4 shadow-md rounded-md m-2 w-[90%] md:w-[500px]">
           <p>Current Bidder: {bidder} </p>
           <p>Current Price: {auction?.bidPrice} </p>
-          <Input
-            bg={"white"}
-            w={48}
-            color={"black"}
-            type="number"
-            onChange={(e) => setPlaceBidAmount(parseInt(e.target.value, 10))}
-          ></Input>
-          <Button className="m-4" onClick={() => placeBid(placeBidAmount)}>
-            Place Bid
-          </Button>
-          <div className="flex space-x-2 justify-center mb-4">
-            <Button
-              onClick={() =>
-                placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 50 : 50)
-              }
-            >
-              +50
+          <div className="m-auto">
+            <Input
+              bg={"white"}
+              w={48}
+              color={"black"}
+              type="number"
+              onChange={(e) => setPlaceBidAmount(parseInt(e.target.value, 10))}
+            ></Input>
+            <Button className="m-4" onClick={() => placeBid(placeBidAmount)}>
+              Place Bid
             </Button>
-            <Button
-              onClick={() =>
-                placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 100 : 100)
-              }
-            >
-              +100
-            </Button>
-            <Button
-              onClick={() =>
-                placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 200 : 200)
-              }
-            >
-              +200
-            </Button>
-            <Button
-              onClick={() =>
-                placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 500 : 500)
-              }
-            >
-              +500
-            </Button>
+            <div className="grid grid-cols-4 space-x-2 justify-center mb-4">
+              <Button
+                onClick={() =>
+                  placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 50 : 50)
+                }
+              >
+                +50
+              </Button>
+              <Button
+                onClick={() =>
+                  placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 100 : 100)
+                }
+              >
+                +100
+              </Button>
+              <Button
+                onClick={() =>
+                  placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 200 : 200)
+                }
+              >
+                +200
+              </Button>
+              <Button
+                onClick={() =>
+                  placeBid(bids.length > 0 ? bids[bids.length - 1].bidAmount + 500 : 500)
+                }
+              >
+                +500
+              </Button>
+            </div>
           </div>
           {expirTime && (
             <MyTimer expiryTimestamp={expirTime} onExpire={onExpire} />
           )}
         </div>
 
-        <div className="glassy-effect h-[500px] w-[500px] m-2 p-2">
+        <div className="glassy-effect h-[500px] w-[90%] md:w-[500px] m-2 p-2 shadow-md rounded-md">
           <Tabs variant="enclosed">
             <TabList>
               <Tab color={"white"}>History</Tab>

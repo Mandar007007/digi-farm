@@ -11,6 +11,8 @@ import AuctionRoom from './components/Auction/AuctionRoom.tsx'
 import Auction from './components/Auction/AuctionPage.tsx'
 import ProfilePage from './components/Profile/ProfilePage.tsx'
 import AboutUs from './components/AboutUs/AboutUs.tsx'
+import History from './components/Profile/History.tsx'
+import PaymentPage from './PaymentPage/PaymentPage.tsx'
 
 function App() {
 
@@ -66,6 +68,10 @@ function App() {
     {
       path : "/aboutus" ,
       name : "About Us"
+    },
+    {
+      path : "/history" ,
+      name : "History"
     }
 
   ]
@@ -92,7 +98,8 @@ function App() {
         <Route path="/auctionPage" element={<AuctionRoom />} />
         <Route path="/profile" element={<ProfilePage toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} user={user}  dispatch={dispatch}/>} />
         <Route path="/aboutus" element={<AboutUs />} />
-        {/* <Route path="/payments" element={<PaymentPage />} /> */}
+        <Route path="/history" element={<History />} />
+        <Route path="/payments" element={<PaymentPage />} />
         </Routes>
       </Router>
     </div>

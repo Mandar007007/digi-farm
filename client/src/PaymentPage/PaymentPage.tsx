@@ -14,6 +14,7 @@ const PaymentPage = () => {
             withCredentials:true
         })
         setAuctions(response.data.auctions)
+        console.log(response.data);
     }
 
     const handleCkeckOut = async (price,auctionId) => {

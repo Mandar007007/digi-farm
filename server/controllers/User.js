@@ -275,3 +275,25 @@ exports.loadUser = async (req, res) => {
     });
   }
 };
+
+
+exports.setPayment = async (req,res) => {
+  try{
+    const {auctionId} = req.body
+    const auction = await Auction.findOne({_id:auctionId})
+    auction.completedPayment = true;
+    await auction.save();
+    
+    res.status(200).json({
+      success: true,
+      auction
+    })
+
+  }catch(err)
+  {
+    res.status(500).json({
+      success: false,
+      error:err.message
+    })
+  }
+}
