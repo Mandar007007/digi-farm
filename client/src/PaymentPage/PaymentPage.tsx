@@ -90,23 +90,23 @@ const PaymentPage = () => {
                             <div className=" grid grid-cols-8" >
                                 <div className=" col-span-3 py-3 md:px-6 px-3 border-b border-blue-gray-50">
                                     <div className=" flex items-center justify-center ">
-                                        <img src={auction.cropImage?.url} className="inline-block relative object-cover object-center w-12 h-12 rounded-md mr-5" />
-                                        <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-semibold">{auction.cropName}</p>
+                                        <img src={auction.cropImage?.url} className="inline-block relative object-cover object-center w-12 h-12 rounded-full mr-5" />
+                                        <p className="block antialiased font-sans text-xl leading-normal text-blue-gray-900 font-semibold">{auction.cropName}</p>
                                     </div>
                                 </div>
                                 <div className=" col-span-2 py-3 md:px-6 px-3 border-b border-blue-gray-50 flex items-center justify-center">
-                                    <p className="block antialiased font-sans text-xs font-normal text-blue-gray-600">800 Rs</p>
+                                    <p className="block antialiased font-sans text-lg font-normal text-blue-gray-600">{auction.bidPrice}</p>
                                 </div>
                                 <div className=" col-span-3 py-3 md:px-6 px-3 border-b border-blue-gray-50 flex items-center justify-center">
                                     {!auction.completedPayment ? (
                                     <button 
                                       onClick={()=>{handleCkeckOut(auction.bidPrice, auction._id)}}
                                       type="button" 
-                                      className="text-white bg-gradient-to-br rounded-sm from-green-800 to-green-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium text-sm md:px-5 px-1 py-2.5 text-center">
+                                      className="text-white bg-gradient-to-br rounded-full from-green-800 to-green-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium text-lg md:px-5 px-2 py-1 text-center">
                                         Pay
                                     </button>
                                     ):(
-                                    <p className="block antialiased font-sans text-xs font-normal text-blue-gray-600">Paid</p>
+                                    <p className="block antialiased font-sans font-normal text-green-500 text-lg bg-gray-800 rounded-full px-2">Paid</p>
                                     )
                                     }
                                 </div>

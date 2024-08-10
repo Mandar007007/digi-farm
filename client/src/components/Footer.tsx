@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-      <footer className="mt-32   border-2 px-10 py-4 glassy-effect-navbar flex justify-between">
+      <footer className="mt-32 border-2 px-10 py-4 glassy-effect-navbar flex justify-between">
         <span className="block  text-md text-gray-500 sm:text-center dark:text-gray-400 ">
           Developed by ,
           <div className="flex ">

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Reveal from "../Reveal";
-import { Button  } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import * as io from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -15,6 +15,7 @@ export default function Auction({ isLoggedIn, user }: any) {
 
   const dispatch = useDispatch();
   const [auctions, setAuctions] = useState([]);
+  const [count, setCount] = useState(0);
 
   const gotoAuction = async (data: any) => {
     if (isLoggedIn) {
@@ -59,6 +60,7 @@ export default function Auction({ isLoggedIn, user }: any) {
       );
 
       setAuctions(response.data.auctions);
+      console.log(response.data.auctions);
     } catch (err) {
       console.log(err);
     }
@@ -68,11 +70,16 @@ export default function Auction({ isLoggedIn, user }: any) {
     getAuctions();
   }, []);
 
+
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-10">Live Auctions</h1>
 
       <div className="grid grid-cols-1 gap-5 lg:gap-0 lg:grid-cols-2">
+        {count == 0 && <div className="h-[300px] w-screen flex justify-center items-center">
+          <span className="text-5xl text-gray-600 font-bold">Currently No Auction available</span>
+        </div>}
         {auctions.map((auction: any) => {
           // console.log(auction);
 
@@ -81,6 +88,7 @@ export default function Auction({ isLoggedIn, user }: any) {
             const expireTime = new Date(auction.expireTime).getTime();
 
             if (!isNaN(expireTime) && Date.now() <= expireTime) {
+              setCount(prev => prev + 1);
               return (
                 <Reveal>
                   <div className="glassy-effect m-auto border-zinc-800 border-2 flex flex-col items-center justify-between p-7 max-w-[600px] rounded-md w-[90%] ">
@@ -123,7 +131,7 @@ export default function Auction({ isLoggedIn, user }: any) {
         })}
       </div>
 
-      <AddButton user={user}/>
+      <AddButton user={user} />
     </div>
   );
 }

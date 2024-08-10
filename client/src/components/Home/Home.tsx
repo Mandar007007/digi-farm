@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import RevealCards from "../RevealCards";
 import Cards from "./Card";
 import Hero from "./Hero";
@@ -53,6 +54,7 @@ export default function Home() {
           );
         })}
       </div>
+      <Footer />
     </>
   );
 }

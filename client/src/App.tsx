@@ -13,12 +13,13 @@ import ProfilePage from './components/Profile/ProfilePage.tsx'
 import AboutUs from './components/AboutUs/AboutUs.tsx'
 import History from './components/Profile/History.tsx'
 import PaymentPage from './PaymentPage/PaymentPage.tsx'
+import Footer from './components/Footer.tsx'
 
 function App() {
 
   const dispatch = useDispatch()
-  const user = useSelector((state : any) => state.user.user) || {};
-  
+  const user = useSelector((state: any) => state.user.user) || {};
+
   const loadUser = async () => {
     try {
       const { data } = await axios.get("http://localhost:3000/api/v1/me", {
@@ -33,7 +34,7 @@ function App() {
       if (data.user) {
         dispatch({ type: "SET_USER", payload: data.user });
         toggleLogin();
-        
+
       } else {
         dispatch({ type: "CLEAR_USER" });
       }
@@ -52,26 +53,26 @@ function App() {
   const routes = [
     {
       path: "/",
-      name : "Home",
+      name: "Home",
     },
     {
       path: "/auction",
-      name : "Auction",
-    },{
-      path : "http://localhost:8501/" ,
-      name : "Crop Prediction"
-    } ,
-    {
-      path : "http://localhost:8502/" ,
-      name : "Disease Detection"
+      name: "Auction",
+    }, {
+      path: "http://localhost:8501/",
+      name: "Crop Prediction"
     },
     {
-      path : "/aboutus" ,
-      name : "About Us"
+      path: "http://localhost:8502/",
+      name: "Disease Detection"
     },
     {
-      path : "/history" ,
-      name : "History"
+      path: "/aboutus",
+      name: "About Us"
+    },
+    {
+      path: "/history",
+      name: "History"
     }
 
   ]
@@ -85,23 +86,22 @@ function App() {
 
 
   return (
-    <div>
+    <div className=''>
       <Router>
-      <div className="mb-24 ">
-      <Nav toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} routes={routes} user={user} />
-
-
-      </div>
+        <div className="mb-24 ">
+          <Nav toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} routes={routes} user={user} />
+        </div>
         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auction" element={<Auction isLoggedIn={isLoggedIn} user={user} />} />
-        <Route path="/auctionPage" element={<AuctionRoom />} />
-        <Route path="/profile" element={<ProfilePage toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} user={user}  dispatch={dispatch}/>} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/payments" element={<PaymentPage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/auction" element={<Auction isLoggedIn={isLoggedIn} user={user} />} />
+          <Route path="/auctionPage" element={<AuctionRoom />} />
+          <Route path="/profile" element={<ProfilePage toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} user={user} dispatch={dispatch} />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/history" element={<PaymentPage />} />
+          {/* <Route path="/payments" element={<PaymentPage />} /> */}
         </Routes>
       </Router>
+      {/* <Footer /> */}
     </div>
   )
 }
