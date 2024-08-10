@@ -25,10 +25,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ChakraProvider theme={theme}>
     <Provider store={Store}>
         <App />
-    
-
-        <Footer />
-
         </Provider>
     </ChakraProvider>
   </React.StrictMode>

@@ -1,5 +1,8 @@
+
 const Auction = require("../models/Auction");
 const { sendAuctionConfirmationEmail } = require("../middlewares/sendMail");
+const { request } = require("express");
+const Razorpay = require("razorpay");
 
 const cloudinary = require("cloudinary").v2;
 
@@ -9,6 +12,10 @@ cloudinary.config({
   api_secret: "kZ09EXXdUgZ5c7oxwNFLTiAFcww",
 });
 
+const instance = new Razorpay({
+  key_id: process.env.KEY_ID,
+  key_secret: process.env.KEY_SECRET,
+});
 
 exports.createAuction = async (req, res) => {
   try {
@@ -17,7 +24,7 @@ exports.createAuction = async (req, res) => {
     let public_id = "public_id";
     let url = "url";
     let desc = "This is description";
-    // console.log(req.file.path);
+    console.log(req.file.path);
     await cloudinary.uploader.upload(req.file.path, (err, result) => {
         if (err) {
             console.log("error is " +err);
@@ -26,8 +33,8 @@ exports.createAuction = async (req, res) => {
         url = result?.url;
         public_id = result?.public_id;
 
-        // console.log("url : ", url);
-        // console.log("public_id : ", public_id);
+        console.log("url : ", url);
+        console.log("public_id : ", public_id);
     });
 
     const auction = await Auction.create({
@@ -51,72 +58,53 @@ exports.createAuction = async (req, res) => {
   }
 };
 
-exports.checkAuction = async (req, res) => {
+exports.checkAuction = async (req,res) => {
+
   console.log("Inside check auction");
-};
+}
 
-exports.getAllAuction = async (req, res) => {
-  try {
-    const auctions = await Auction.find({});
+exports.getAllAuction = async (req,res) => {
+  try{
+      const auctions = await Auction.find({})
 
-    res.status(200).json({
-      success: true,
-      auctions,
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-    });
+      res.status(200).json({
+          success: true,
+          auctions
+      })
+
+  }catch(err)
+  {
+      res.status(500).json({
+          success: false,
+          error:err.message
+      })
   }
-};
 
-exports.checkMail = async (req, res) => {
-  const {
-    email,
-    subject,
-    winnerName,
-    cropName,
-    finalBidAmount,
-    auctionDate,
-    ownerAccountDetails,
-  } = req.body;
+}
+
+exports.checkMail = async (req,res) =>{
+
+  const { email ,subject ,  winnerName , cropName , finalBidAmount , auctionDate , ownerAccountDetails } = req.body;
   console.log("inside mail funciton");
-  console.log(
-    email,
-    subject,
-    winnerName,
-    cropName,
-    finalBidAmount,
-    auctionDate,
-    ownerAccountDetails
-  );
-  try {
-    // const auctionConfirmationEmailOptions = {
-    //     email: "krishp759@gmail.com",
-    //     subject: "Auction Winner Confirmation",
-    //     winnerName: "John Doe",
-    //     cropName: "Your Crop Name",
-    //     finalBidAmount: "$500",
-    //     auctionDate: "2022-02-15",
-    //     ownerAccountDetails: "Owner's Bank Account Details",
-    //   };
+  console.log( email , subject ,  winnerName , cropName , finalBidAmount , auctionDate , ownerAccountDetails);
+  try{
 
-    const auctionConfirmationEmailOptions = {
-      email: email,
-      subject: subject,
-      winnerName: winnerName,
-      cropName: cropName,
-      finalBidAmount: finalBidAmount,
-      auctionDate: auctionDate,
-      ownerAccountDetails: ownerAccountDetails,
-    };
-
-    await sendAuctionConfirmationEmail(auctionConfirmationEmailOptions);
-  } catch (err) {
-    console.log(err);
+      const auctionConfirmationEmailOptions = {
+          email : email ,
+          subject : subject ,
+          winnerName : winnerName ,
+          cropName : cropName ,
+          finalBidAmount : finalBidAmount ,
+          auctionDate : auctionDate ,
+          ownerAccountDetails : ownerAccountDetails
+      }
+        
+        await sendAuctionConfirmationEmail(auctionConfirmationEmailOptions);
   }
-};
+  catch(err){
+      console.log(err)
+  }
+}
 
 exports.getPendingPayments = async(req,res) => {
   try{

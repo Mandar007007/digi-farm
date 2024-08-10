@@ -5,6 +5,9 @@ const {
   createAuction,
   checkMail,
   checkAuction,
+  checkOut,
+  getPendingPayments,
+  verifyPayment
 } = require("../controllers/Auction");
 const router = express.Router();
 const multer = require("multer");
@@ -17,5 +20,8 @@ router.post(
   createAuction
 );
 router.post("/sendmail", checkMail);
+router.post("/getPendingPayments",getPendingPayments)
+router.post("/checkout",checkOut)
+router.post("/verifyPayment",verifyPayment)
 
 module.exports = router;

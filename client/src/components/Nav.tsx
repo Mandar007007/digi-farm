@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useDisclosure } from "@chakra-ui/react";
 import Login from "./Auth/Login";
@@ -40,7 +40,7 @@ const CustomNavLink: React.FC<CustomNavLinkProps> = ({
   );
 };
 
-export default function Nav({ toggleLogin, isLoggedIn , routes , user }: any) {
+export default function Nav({ toggleLogin, isLoggedIn, routes, user }: any) {
 
 
   // const toast = useToast();
@@ -59,8 +59,8 @@ export default function Nav({ toggleLogin, isLoggedIn , routes , user }: any) {
 
   const logout = async () => {
 
-    
-    try{
+
+    try {
       await axios.get("http://localhost:3000/api/v1//logout", {
         headers: {
           "Content-Type": "application/json",
@@ -73,12 +73,12 @@ export default function Nav({ toggleLogin, isLoggedIn , routes , user }: any) {
 
       toast.success("Logged out successfully");
       toggleLogin();
-    }catch(err){
+    } catch (err) {
       toast.error("Error");
     }
 
 
-  
+
   };
 
   return (
@@ -89,18 +89,21 @@ export default function Nav({ toggleLogin, isLoggedIn , routes , user }: any) {
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img src="/logo.png" className="md:h-12 h-6" alt="vite" />
+            <div className="flex items-center gap-2">
+              <img src="/logo.png" className="md:h-12 h-6" alt="vite" />
+              <span className="text-2xl">Digi Farm</span>
+            </div>
           </CustomNavLink>
           <div className="flex md:order-2 space-x-3 md:space-x-0  rtl:space-x-reverse">
             {!isLoggedIn && (
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="text-white bg-gradient-to-br from-green-800 to-green-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium text-sm px-5 py-2.5 text-center"
-                onClick={onOpenLogin}  
+                onClick={onOpenLogin}
               >
-                
+
                 Login/Register
-              {/* </button>
+                {/* </button>
               <button
                 type="button"
                 className="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-sm text-sm md:px-4 md:py-2  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-2 "
@@ -123,7 +126,7 @@ export default function Nav({ toggleLogin, isLoggedIn , routes , user }: any) {
             {isLoggedIn && (
               <Menu>
                 <MenuButton className="border-2 border-white-500 rounded-full">
-                  <Avatar name="Dan Abrahmov" src={"/avatar.jpeg"} size={"sm"}/>
+                  <Avatar name="Dan Abrahmov" src={"/avatar.jpeg"} size={"sm"} />
                 </MenuButton>
                 <MenuList bg={"gray.900"}>
                   <CustomNavLink
@@ -157,7 +160,7 @@ export default function Nav({ toggleLogin, isLoggedIn , routes , user }: any) {
                   _focus={{
                     bg: "gray.500",
                   }}
-                  
+
                 />
                 <MenuList bg={"gray.900"}>
                   {routes.map((route: any, index: any) => (
@@ -171,7 +174,7 @@ export default function Nav({ toggleLogin, isLoggedIn , routes , user }: any) {
                       </CustomNavLink>
                     </MenuItem>
                   ))}
-                  
+
                 </MenuList>
               </Menu>
             </div>

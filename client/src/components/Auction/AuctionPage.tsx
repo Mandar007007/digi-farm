@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Reveal from "../Reveal";
-import { Button  } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import * as io from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -59,6 +59,7 @@ export default function Auction({ isLoggedIn, user }: any) {
       );
 
       setAuctions(response.data.auctions);
+      console.log(response.data.auctions);
     } catch (err) {
       console.log(err);
     }
@@ -67,6 +68,8 @@ export default function Auction({ isLoggedIn, user }: any) {
   useEffect(() => {
     getAuctions();
   }, []);
+
+
 
   return (
     <div>
@@ -123,7 +126,7 @@ export default function Auction({ isLoggedIn, user }: any) {
         })}
       </div>
 
-      <AddButton user={user}/>
+      <AddButton user={user} />
     </div>
   );
 }
