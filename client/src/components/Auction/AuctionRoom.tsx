@@ -36,7 +36,7 @@ const AuctionRoom = () => {
   const [emailData, setEmailData] = useState({
     email: bidderEmail,
     subject: "Auction Winner Confirmation",
-    winnerName: auction.currentBidder,
+    winnerName: auction?.currentBidder ? auction.currentBidder : "",
     cropName: "Baajro",
     finalBidAmount: "500",
     auctionDate: "2022-02-15",
@@ -95,8 +95,13 @@ const AuctionRoom = () => {
   }, [auc]);
 
   useEffect(() => {
+    setBidder(localStorage.getItem("bidder") as string);
+  },[])
+
+  useEffect(() => {
     const handleUpdateAuction = (updatedAuction: any) => {
       setBidder(updatedAuction.bidder);
+      localStorage.setItem('bidder', updatedAuction.bidder)
       setAuction({
         ...updatedAuction.updatedAuction,
         winner: "",

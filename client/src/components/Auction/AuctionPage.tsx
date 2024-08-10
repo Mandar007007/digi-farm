@@ -36,7 +36,7 @@ export default function Auction({ isLoggedIn, user }: any) {
           userId: data.userId,
         });
         console.log("joined auction", data._id);
-
+        
         navigate("/auctionPage");
       } catch (e) {
         console.log(e);
