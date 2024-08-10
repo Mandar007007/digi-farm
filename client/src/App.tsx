@@ -9,6 +9,8 @@ import Nav from './components/Nav.tsx'
 import Home from './components/Home/Home.tsx'
 import AuctionRoom from './components/Auction/AuctionRoom.tsx'
 import Auction from './components/Auction/AuctionPage.tsx'
+import ProfilePage from './components/Profile/ProfilePage.tsx'
+import AboutUs from './components/AboutUs/AboutUs.tsx'
 
 function App() {
 
