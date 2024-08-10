@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Nav from './components/Nav.tsx'
+import Home from './components/Home/Home.tsx'
 
 function App() {
 
@@ -82,7 +83,7 @@ function App() {
 
       </div>
         <Routes>
-          {/* <Route path="/" element={<Register />} /> */}
+        <Route path="/" element={<Home />} />
         </Routes>
       </Router>
     </div>
