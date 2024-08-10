@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config({ path: "config/config.env" });
 const Auction = require("./models/Auction");
 const path=require("path");
+const user = require("./routes/User");
 
 //middlewares
 app.use(express.json());
@@ -31,6 +32,10 @@ io = new Server(server, {
 io.on('connection', (socket) => {
     
 })
+
+
+//router
+app.use("/api/v1", user);
 
 
 module.exports = server
