@@ -6,8 +6,9 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 require("dotenv").config({ path: "config/config.env" });
 const Auction = require("./models/Auction");
-const path=require("path");
+const path = require("path");
 const user = require("./routes/User");
+const auction = require("./routes/User");
 
 //middlewares
 app.use(express.json());
@@ -23,19 +24,16 @@ app.use(
 const server = http.createServer(app);
 
 io = new Server(server, {
-    cors: {
-        origin: "http://localhost:5173",
-        methods: ["GET", "POST"],
-    }
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  },
 });
 
-io.on('connection', (socket) => {
-    
-})
-
+io.on("connection", (socket) => {});
 
 //router
 app.use("/api/v1", user);
+app.use("/api/v1", auction);
 
-
-module.exports = server
+module.exports = server;
