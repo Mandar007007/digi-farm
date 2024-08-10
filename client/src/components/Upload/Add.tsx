@@ -18,9 +18,10 @@ import {
   FormControl,
   FormLabel,
   Input,
+  useTab,
+  useToast,
 } from "@chakra-ui/react";
 
-import toast from "react-hot-toast";
 import axios from "axios";
 
 import { AddIcon, CopyIcon } from "@chakra-ui/icons";
@@ -28,7 +29,7 @@ import { AddIcon, CopyIcon } from "@chakra-ui/icons";
 const AddButton = ({ user }: any) => {
 
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const toast = useToast();
   const {
     isOpen: isOpenAuction,
     onOpen: onOpenAuction,
@@ -68,7 +69,7 @@ const AddButton = ({ user }: any) => {
 
 
     try {
-      await axios.post("http://localhost:3000/api/v1/auction", {
+      const res = await axios.post("http://localhost:3000/api/v1/auction", {
         cropName,
         userId,
         expireTime,
@@ -80,10 +81,21 @@ const AddButton = ({ user }: any) => {
         },
         withCredentials: true,
       });
-      toast.success("Auction Created Successfully");
+      toast({
+        title: "Auction Created Successfully",
+        duration: 3000,
+        position: "top-right",
+        status: "success",
+      });
       onCloseAuction();
     } catch (err) {
-      toast.error("Error in creating Auction");
+      toast({
+        title: "Create Auction Error",
+        description: "Please Login or SignUp first",
+        duration: 3000,
+        position: "top-right",
+        status: "error",
+      });
     }
   };
 

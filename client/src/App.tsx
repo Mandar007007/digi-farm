@@ -9,6 +9,8 @@ import Nav from './components/Nav.tsx'
 import Home from './components/Home/Home.tsx'
 import AuctionRoom from './components/Auction/AuctionRoom.tsx'
 import Auction from './components/Auction/AuctionPage.tsx'
+import ProfilePage from './components/Profile/ProfilePage.tsx'
+import AboutUs from './components/AboutUs/AboutUs.tsx'
 
 function App() {
 
@@ -88,8 +90,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/auction" element={<Auction isLoggedIn={isLoggedIn} user={user} />} />
         <Route path="/auctionPage" element={<AuctionRoom />} />
-        {/* <Route path="/profile" element={<ProfilePage toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} user={user}  dispatch={dispatch}/>} /> */}
-        {/* <Route path="/aboutus" element={<AboutUs />} /> */}
+        <Route path="/profile" element={<ProfilePage toggleLogin={toggleLogin} isLoggedIn={isLoggedIn} user={user}  dispatch={dispatch}/>} />
+        <Route path="/aboutus" element={<AboutUs />} />
         {/* <Route path="/payments" element={<PaymentPage />} /> */}
         </Routes>
       </Router>

@@ -74,7 +74,7 @@ const AuctionRoom = () => {
           status: 'error',
           duration: 3000,
           isClosable: true,
-          position:"top right"
+          position: "top-right",
         });
 
         return;
