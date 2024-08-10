@@ -7,6 +7,7 @@ import Store from "./store";
 import { Provider } from 'react-redux'
 
 import { extendTheme } from "@chakra-ui/react";
+import Footer from "./components/Footer";
 
 
 const theme = extendTheme({
@@ -26,7 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <App />
     
 
-
+        <Footer />
 
         </Provider>
     </ChakraProvider>
