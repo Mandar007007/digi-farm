@@ -65,6 +65,7 @@ io.on("connection", (socket) => {
 });
 
 //router
+app.get("/", (req, res) => {res.send("Hello From Server");});
 app.use("/api/v1", user);
 app.use("/api/v1", auction);
 
