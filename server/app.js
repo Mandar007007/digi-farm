@@ -8,7 +8,7 @@ require("dotenv").config({ path: "config/config.env" });
 const Auction = require("./models/Auction");
 const path = require("path");
 const user = require("./routes/User");
-const auction = require("./routes/User");
+const auction = require("./routes/Auction");
 
 //middlewares
 app.use(express.json());
