@@ -71,7 +71,7 @@ export default function Login({
     setLoading(true);
 
     try{
-      const res = await axios.post("http://localhost:3000/api/v1/login", data ,
+      const res = await axios.post("https://digi-farm-backend.vercel.app/api/v1/login", data ,
       {
         headers: {
           "Content-Type": "application/json"
@@ -98,7 +98,7 @@ export default function Login({
     try{
       const result = await signInWithPopup(auth,provider)
 
-      const res = await axios.post("http://localhost:3000/api/v1/login", {email:result.user.email,password:'',isGoogle:true} ,
+      const res = await axios.post("https://digi-farm-backend.vercel.app/api/v1/login", {email:result.user.email,password:'',isGoogle:true} ,
       {
         headers: {
           "Content-Type": "application/json"

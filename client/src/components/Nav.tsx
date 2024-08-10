@@ -61,7 +61,7 @@ export default function Nav({ toggleLogin, isLoggedIn, routes, user }: any) {
 
 
     try {
-      await axios.get("http://localhost:3000/api/v1//logout", {
+      await axios.get("https://digi-farm-backend.vercel.app/api/v1//logout", {
         headers: {
           "Content-Type": "application/json",
         },

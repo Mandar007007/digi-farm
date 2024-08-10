@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import AddButton from "../Upload/Add";
 
 export default function Auction({ isLoggedIn, user }: any) {
-  const socket = io.connect("http://localhost:3000");
+  const socket = io.connect("https://digi-farm-backend.vercel.app");
   // const toast = useToast();
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ export default function Auction({ isLoggedIn, user }: any) {
   const getAuctions = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/auctions",
+        "https://digi-farm-backend.vercel.app/api/v1/auctions",
         {
           headers: {
             "Content-Type": "application/json",

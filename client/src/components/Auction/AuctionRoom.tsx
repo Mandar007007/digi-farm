@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 // Set up the socket connection
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("https://digi-farm-backend.vercel.app");
 
 const AuctionRoom = () => {
   const [expirTime, setExpirTime] = useState<number | null>(null);
@@ -51,7 +51,7 @@ const AuctionRoom = () => {
     try {
       setBids(bids);
       navigate("/");
-      await axios.post("http://localhost:3000/api/v1/sendmail", emailData, {
+      await axios.post("https://digi-farm-backend.vercel.app/api/v1/sendmail", emailData, {
         headers: {
           "Content-Type": "application/json",
         },

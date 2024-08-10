@@ -70,7 +70,7 @@ const AddButton = ({ user }: any) => {
 
 
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/auction", {
+      const res = await axios.post("https://digi-farm-backend.vercel.app/api/v1/auction", {
         cropName,
         userId,
         expireTime,

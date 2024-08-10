@@ -9,7 +9,7 @@ const PaymentPage = () => {
     const [auctions,setAuctions] = useState([])
     const getPendingPayments = async () => {
         console.log(user)
-        const response = await axios.post('http://localhost:3000/api/v1/getPendingPayments',{bidderEmail:user.email},{
+        const response = await axios.post('https://digi-farm-backend.vercel.app/api/v1/getPendingPayments',{bidderEmail:user.email},{
             headers: { 'Content-Type': 'application/json' },
             withCredentials:true
         })
@@ -23,7 +23,7 @@ const PaymentPage = () => {
     
           const {
             data: { order },
-          } = await axios.post("http://localhost:3000/api/v1/checkout", {
+          } = await axios.post("https://digi-farm-backend.vercel.app/api/v1/checkout", {
             amount: price
           });
     
@@ -51,7 +51,7 @@ const PaymentPage = () => {
           
           const rzp1 = new window.Razorpay(options);
           rzp1.open();
-          await axios.post('http://localhost:3000/api/v1/setpayment',{auctionId},{
+          await axios.post('https://digi-farm-backend.vercel.app/api/v1/setpayment',{auctionId},{
             headers: {'Content-Type': 'application/json'},
             withCredentials:true
           })

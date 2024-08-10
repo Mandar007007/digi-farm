@@ -22,7 +22,7 @@ function App() {
 
   const loadUser = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/v1/me", {
+      const { data } = await axios.get("https://digi-farm-backend.vercel.app/api/v1/me", {
         headers: {
           "Content-Type": "application/json",
         },

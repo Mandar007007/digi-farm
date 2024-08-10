@@ -63,7 +63,7 @@ import {
     const registerUser = async (e) => {
       
       try{
-        const res = await axios.post("http://localhost:3000/api/v1/register", formData ,
+        const res = await axios.post("https://digi-farm-backend.vercel.app/api/v1/register", formData ,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -86,7 +86,7 @@ import {
         // e.preventDefault();
         
       try{
-        const res = await axios.post("http://localhost:3000/api/v1/verify", formData ,
+        const res = await axios.post("https://digi-farm-backend.vercel.app/api/v1/verify", formData ,
         {
           headers: {
             "Content-Type": "application/json"
@@ -134,7 +134,7 @@ import {
       const googleRegister = async () => {
         try{
           const result = await signInWithPopup(auth,provider)
-          const res = await axios.post("http://localhost:3000/api/v1/register", {
+          const res = await axios.post("https://digi-farm-backend.vercel.app/api/v1/register", {
             email:result.user.email,
             name:result.user.displayName,
             isGoogle:true,
